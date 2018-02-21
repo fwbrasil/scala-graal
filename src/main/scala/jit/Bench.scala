@@ -1,5 +1,0 @@
-package jit
-
-class Bench {
-  
-}
