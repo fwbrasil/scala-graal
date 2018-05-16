@@ -52,9 +52,9 @@ class FutureBench {
 
   @Benchmark
   def mapPromise = {
-    val p = Promise[Int]
-    val f = loop(Future.value("a"), ops)
-    p.setValue(1)
+    val p = Promise[String]
+    val f = loop(p, ops)
+    p.setValue("a")
     Await.result(f)
   }
 

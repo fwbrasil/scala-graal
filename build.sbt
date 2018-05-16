@@ -5,4 +5,4 @@ version := "1.0.0-SNAPSHOT"
 
 enablePlugins(JmhPlugin)
 
-libraryDependencies += "com.twitter" %% "util-core" % "18.2.0"
+libraryDependencies += "com.twitter" %% "util-core" % "18.4.0"
