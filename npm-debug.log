@@ -10,7 +10,7 @@
 5 error If you need help, you may report this *entire* log,
 5 error including the npm and node versions, at:
 5 error     <http://github.com/npm/npm/issues>
-6 error System Darwin 15.6.0
+6 error System Darwin 17.7.0
 7 error command "/opt/twitter/nvm/v0.10.38/bin/node" "/opt/twitter/nvm/v0.10.38/bin/npm" "config" "get" "prefix"
 8 error cwd /Users/fbrasil/workspace/scala-graal
 9 error node -v v0.10.38
