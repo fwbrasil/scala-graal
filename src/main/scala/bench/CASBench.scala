@@ -76,6 +76,7 @@ class CASBench {
   def returning = {
     val a = new AtomicLong(0)
     a.compareAndSet(0, 1)
+    a
   }
 
   @Benchmark
@@ -121,5 +122,5 @@ case class UnsafeTest(var v: Long) {
 
 object UnsafeTest {
   val u = TestOffset.u
-  val aaaa = TestOffset.vOffset
+  lazy val aaaa = TestOffset.vOffset
 }

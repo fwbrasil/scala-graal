@@ -7,21 +7,12 @@ import com.twitter.util.Await
 import com.twitter.util.Future
 import org.openjdk.jmh.annotations._
 import com.twitter.util.Promise
+import java.net.ServerSocket
 
 @State(Scope.Benchmark)
 class FinagleBench {
 
   val f = Promise[Int]()
-
-//  List(
-//    f.fusedMap(_ + 1),
-//    f.fusedFlatMap(i => Future.value(i + 1)),
-//    f.fusedTransform(i => Future.value(i.get + 1)),
-//    f.fusedRespond(i => {})
-//    ).foreach { v =>
-//      v.transform(i => Future.value(1))
-//      v.respond(i => {})
-//    }
 
   def resp =
     Future.value(http.Response()).map(identity).map(identity)
@@ -31,10 +22,21 @@ class FinagleBench {
       resp
   }
 
-  val server = Http.server.serve(":8080", httpService)
-  //  Await.ready(server)
+  val port = {
+    var socket: ServerSocket = null;
+    try {
+      socket = new ServerSocket(0)
+      socket.setReuseAddress(true);
+      socket.getLocalPort();
+    } finally
+      if (socket != null)
+        socket.close();
+  }
 
-  val client = Http.client.newService("localhost:8080")
+  val server = Http.server.serve(s":$port", httpService)
+  //Await.ready(server)
+
+  val client = Http.client.newService(s"localhost:$port")
 
   @Benchmark
   def request =
