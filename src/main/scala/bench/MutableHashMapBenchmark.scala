@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit
 @Measurement(iterations = 10)
 @OutputTimeUnit(TimeUnit.NANOSECONDS)
 @State(Scope.Benchmark)
-class HashMapBenchmark {
+class MutableHashMapBenchmark {
   @Param(Array("10", "100", "1000"))
   var size: Int = _
   @Param(Array("true"))
