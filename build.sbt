@@ -11,6 +11,8 @@ enablePlugins(JmhPlugin)
 
 libraryDependencies += "com.twitter" %% "finagle-http" % "18.9.0"  % "compile"
 
+scalacOptions ++= Seq("-Ydelambdafy:inline")
+
 assemblyMergeStrategy in assembly := {
   _ match {
 	  case "META-INF/MANIFEST.MF" => MergeStrategy.discard

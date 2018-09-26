@@ -1,3 +1,13 @@
+
+
+trait Test {
+  def a = println(1)
+}
+
+class TestB extends Test {
+  def b = println(1)
+}
+
 //package bench
 //
 //import org.openjdk.jmh.annotations._
