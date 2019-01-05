@@ -55,9 +55,9 @@ interface J {
 }
 
 class C5 implements I {
-  // public String test() {
-  // return "a";
-  // }
+  public String test() {
+    return "a";
+  }
 
   public long doIt(Counter c) {
     return c.incrementAndGet() + 5;
@@ -98,6 +98,22 @@ public class ITableBench {
     return i.doIt(c);
   }
 
+  // @Benchmark
+  // public int test() {
+  // int i = 0;
+  // switch (r.nextInt(max)) {
+  // case 0:
+  // i = 10;
+  // break;
+  // case 1:
+  // i = 20;
+  // break;
+  // default:
+  // i = 30;
+  // }
+  // return i + 20;
+  // }
+
   @Benchmark
   public long bench() {
     if (j != 0) {
@@ -121,7 +137,7 @@ public class ITableBench {
       default:
         i = new C3();
     }
-    if (System.currentTimeMillis() - start > 30000) {
+    if (System.currentTimeMillis() - start > 10000) {
       if (max == 4) {
         System.out.println("force deopt");
         max = 5;

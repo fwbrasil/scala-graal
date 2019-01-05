@@ -9,11 +9,11 @@ enablePlugins(JmhPlugin)
 
 //libraryDependencies += "com.twitter" %% "util-core" % "18.6.0" //from "file:///Users/fbrasil/workspace/util/util-core/target/scala-2.11/util-core-assembly-18.6.0.jar"
 
-libraryDependencies += "com.twitter" %% "finagle-http" % "18.9.0"  % "compile"
+//libraryDependencies += "com.twitter" %% "finagle-http" % "18.11.0"  % "compile"
 
-libraryDependencies += "cglib" % "cglib" % "3.2.8"
+//libraryDependencies += "cglib" % "cglib" % "3.2.8"
 
-scalacOptions ++= Seq("-Ydelambdafy:inline")
+// scalacOptions ++= Seq("-Ydelambdafy:inline")
 
 assemblyMergeStrategy in assembly := {
   _ match {
