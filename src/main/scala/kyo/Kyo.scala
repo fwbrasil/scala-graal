@@ -8,7 +8,7 @@ import scala.collection.mutable.Queue
 import scala.collection.mutable.Stack
 
 @State(Scope.Benchmark)
-object Kyo extends App {
+class Kyo {//extends App {
 
   // compileers + partial evaluation
   // tower of compileers
@@ -318,7 +318,7 @@ object Kyo extends App {
     }
   }
 
-  //  t.start()
+    t.start()
 
   val n = () => {
     val sum = (a: Int, b: Int) => a + b
@@ -328,11 +328,11 @@ object Kyo extends App {
   @Benchmark
   def bi() = deepEval[CIntFunction](f).v
 
-  println(bi())
-
-  jit(BetaReduction(Map.empty))
-
-  println(bi())
+//  println(bi())
+//
+//  jit(BetaReduction(Map.empty))
+//
+//  println(bi())
 
   @Benchmark
   def bn() = n()
