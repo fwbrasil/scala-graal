@@ -1,4 +1,4 @@
-package bench
+package playground
 
 import scala.collection.generic.CanBuildFrom
 import scala.reflect.ClassTag

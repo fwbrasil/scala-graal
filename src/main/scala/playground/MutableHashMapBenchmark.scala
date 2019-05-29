@@ -1,4 +1,4 @@
-package bench
+package playground
 
 import org.openjdk.jmh.annotations._
 import org.openjdk.jmh.infra._
@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit
 @Measurement(iterations = 10)
 @OutputTimeUnit(TimeUnit.NANOSECONDS)
 @State(Scope.Benchmark)
-class ImmutableHashMapBenchmark {
+class MutableHashMapBenchmark {
   @Param(Array("10", "100", "1000"))
   var size: Int = _
   @Param(Array("true"))
@@ -34,21 +34,14 @@ class ImmutableHashMapBenchmark {
     missingKeys = (size to 2 * size).toArray.map(_.toString)
   }
 
-  var map: collection.immutable.Map[Any, Any] = null
-
-  var map2: collection.immutable.Map[Any, Any] = null
+  var map: collection.mutable.HashMap[Any, Any] = null
 
   @Setup(Level.Trial) def initialize = {
-    map = collection.immutable.Map(existingKeys.map(x => (x, x)) : _*)
-    map2 = collection.immutable.Map(existingKeys.splitAt(10)._1.map(x => (x, (x, x))) ++ missingKeys.map(x => (x, x)) : _*)
+    map = collection.mutable.HashMap(existingKeys.map(x => (x, x)) : _*)
   }
 
-//  @Benchmark def concat(bh: Blackhole): Unit = {
-//    bh.consume(map.concat map2)
-//  }
-
   @Benchmark def contains(bh: Blackhole): Unit = {
-    var i = 0
+    var i = 0;
     while (i < size) {
       bh.consume(map.contains(existingKeys(i)))
       if (useMissingValues) {
@@ -59,7 +52,7 @@ class ImmutableHashMapBenchmark {
   }
 
   @Benchmark def get(bh: Blackhole): Unit = {
-    var i = 0
+    var i = 0;
     while (i < size) {
       bh.consume(map.get(existingKeys(i)))
       if (useMissingValues) {
@@ -70,7 +63,7 @@ class ImmutableHashMapBenchmark {
   }
 
   @Benchmark def getOrElse(bh: Blackhole): Unit = {
-    var i = 0
+    var i = 0;
     while (i < size) {
       bh.consume(map.getOrElse(existingKeys(i), ""))
       if (useMissingValues) {
@@ -79,12 +72,13 @@ class ImmutableHashMapBenchmark {
       i += 1
     }
   }
-  @Benchmark def updated(bh: Blackhole): Unit = {
-    var i = 0
+
+  @Benchmark def getOrElseUpdate(bh: Blackhole): Unit = {
+    var i = 0;
     while (i < size) {
-      bh.consume(map.updated(existingKeys(i), ""))
+      bh.consume(map.getOrElseUpdate(existingKeys(i), ""))
       if (useMissingValues) {
-        bh.consume(map.updated(missingKeys(i), ""))
+        bh.consume(map.getOrElse(missingKeys(i), ""))
       }
       i += 1
     }

@@ -1,4 +1,4 @@
-package bench
+package playground
 
 import com.twitter.finagle.Http
 import com.twitter.finagle.Service

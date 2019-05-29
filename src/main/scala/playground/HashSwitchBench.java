@@ -1,4 +1,4 @@
-package bench;
+package playground;
 
 import java.util.Random;
 

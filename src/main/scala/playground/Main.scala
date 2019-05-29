@@ -1,3 +1,4 @@
+package playground;
 //package bench
 //
 //import scala.annotation.tailrec

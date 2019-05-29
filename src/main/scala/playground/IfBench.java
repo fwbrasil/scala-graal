@@ -1,4 +1,4 @@
-package bench;
+package playground;
 
 import java.util.Random;
 
@@ -11,8 +11,13 @@ public class IfBench {
 
 	@Benchmark
 	public int bench() {
+		return doIt(r.nextBoolean());
+	}
+
+	@CompilerControl(CompilerControl.Mode.DONT_INLINE)
+	private int doIt(boolean b) {
 		int i;
-		if (r.nextBoolean()) {
+		if (b) {
 			i = a();
 		} else {
 			i = b();
